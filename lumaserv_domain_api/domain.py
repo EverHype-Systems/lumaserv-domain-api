@@ -58,4 +58,16 @@ def get_auth_code(api_token, domain):
     return get_auth_info(api_token, domain)["data"]["domain"]["authinfo"]
 
 
+def check_availabilty(api_token, domain):
+    """
+    RETURNS INFORMATION ABOUT THE AUTH CODE
+    :param domain: DECLARES THE DOMAIN TO BE USED
+    :param api_token: DECLARES THE API TOKEN
+    :return: RETURNS LIST
+    """
 
+    r = requests.post(base.format(endpoint="/domain/domains/check", API_TOKEN=api_token), params={
+        "domainName": domain
+    })
+
+    return r.json()
