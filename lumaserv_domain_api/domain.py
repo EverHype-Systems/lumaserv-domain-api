@@ -1,5 +1,4 @@
 import requests
-import json
 
 # DECLARES THE BASE URL OF THE API
 base = "https://connect.nicapi.eu/api/v1/{endpoint}?authToken={API_TOKEN}"
