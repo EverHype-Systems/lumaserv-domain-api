@@ -57,7 +57,7 @@ def get_auth_code(api_token, domain):
     return get_auth_info(api_token, domain)["data"]["domain"]["authinfo"]
 
 
-def check_availabilty(api_token, domain):
+def check_availability(api_token, domain):
     """
     RETURNS INFORMATION ABOUT THE AUTH CODE
     :param domain: DECLARES THE DOMAIN TO BE USED
@@ -228,3 +228,4 @@ def get_domain_discounts(api_token):
     r = requests.get(base.format(endpoint="accounting/pricing/domains/discounts", API_TOKEN=api_token))
 
     return r.json()
+
