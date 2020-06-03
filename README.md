@@ -2,7 +2,7 @@
 This wrapper is used for communication with the Lumaserv System Domain API. The API documentation can be found at https://docs.nicapi.eu/de/docs.
 ## Implemented Features
 
- - [ ] Domains
+ - [x] Domains
 	 - [x] Get domains
 	 - [x] Get one domain
 	 - [x] Get authcode
@@ -13,8 +13,8 @@ This wrapper is used for communication with the Lumaserv System Domain API. The 
 	 - [x] Update domain
 	 - [x] Restore Domain
 	 - [x] Get all available domain tlds
-	 - [ ] Get domain price list
-	 - [ ] Get domain price offers
+	 - [x] Get domain price list
+	 - [x] Get domain price offers
  - [ ] Contacts/Handle
 	 - [ ] Get contacts/handles
 	 - [ ] Get one contact/handle
