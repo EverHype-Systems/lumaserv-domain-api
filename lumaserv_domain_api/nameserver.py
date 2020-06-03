@@ -60,3 +60,19 @@ def delete_nameserver(api_token, nameserver):
 
     return r.json()
 
+
+def update_namserver(api_token, nameserver):
+    """
+    UPDATED A  NAMESERVER
+    :param api_token:
+    :param nameserver:
+    :return:
+    """
+
+    r = requests.post(base.format(endpoint="domain/nameservers/refresh", API_TOKEN=api_token), params={
+        "nameserver": nameserver
+    })
+
+    return r.json()
+
+
