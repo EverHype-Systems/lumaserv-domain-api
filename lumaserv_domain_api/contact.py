@@ -31,7 +31,6 @@ def get_handle(api_token, handle):
     return r.json()
 
 
-
 def get_countries(api_token):
     """
     RETURNS ALL AVAILABLE COUNTRIES
@@ -44,13 +43,13 @@ def get_countries(api_token):
     return r.json()
 
 
-def create_handle(api_token, type, sex, firstname, lastname, organisation, street, number, postcode, city, region,
+def create_handle(api_token, handle_type, sex, firstname, lastname, organisation, street, number, postcode, city, region,
                   country, email, countryofbirth=None, user=None, dateofbirth=None):
     """
     CREATES A DOMAIN CONTACT
     :return:
     :param api_token:
-    :param type:
+    :param handle_type:
     :param sex:
     :param firstname:
     :param lastname:
@@ -69,7 +68,7 @@ def create_handle(api_token, type, sex, firstname, lastname, organisation, stree
     """
 
     r = requests.post(base.format(endpoint="domain/handles/create", API_TOKEN=api_token), params={
-        "type": type,
+        "type": handle_type,
         "sex": sex,
         "firstname": firstname,
         "lastname": lastname,
@@ -138,6 +137,3 @@ def edit_handle(api_token, handle, organisation=None, street, number, postcode, 
     })
 
     return r.json()
-
-
-
