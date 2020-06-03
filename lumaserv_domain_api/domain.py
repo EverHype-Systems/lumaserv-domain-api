@@ -117,14 +117,29 @@ def order_domain(api_token, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, 
 
 def delete_domain(api_token, domainName, date=None):
     """
+    Deletes a domain.
     :param api_token:
     :param domainName:
-    :param date:
+    :param date: OPTIONAL
     :return:
     """
     r = requests.delete(base.format(endpoint="domain/domains/delete", API_TOKEN=api_token), params={
         "domainName": domainName,
         "date": date
+    })
+
+    return r.json()
+
+
+def undelete_domain(api_token, domainName):
+    """
+    Removes the deletion task if date for deletion was set.
+    :param api_token:
+    :param domainName:
+    :return:
+    """
+    r = requests.post(base.format(endpoint="domain/domains/undelete", API_TOKEN=api_token), params={
+        "domainName": domainName,
     })
 
     return r.json()
