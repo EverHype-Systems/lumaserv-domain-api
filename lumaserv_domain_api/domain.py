@@ -194,3 +194,14 @@ def restore_domain(api_token, domainName):
 
     return r.json()
 
+
+def get_tlds(api_token):
+    """
+    FETCHES ALL AVAILABLE TLDs
+    :param api_token: DECLARES THE API TOKEN
+    :return: RETURNS LIST
+    """
+
+    r = requests.get(base.format(endpoint="domain/domains/tlds", API_TOKEN=api_token))
+
+    return r.json()
