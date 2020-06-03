@@ -74,7 +74,7 @@ def check_availabilty(api_token, domain):
 
 
 def order_domain(api_token, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, ns3=None, ns4=None, ns5=None, user=None,
-                 years=1, create_zone=True, authinfo=None):
+                 years=1, create_zone=None, authinfo=None):
     """
     ORDERS A DOMAINS
     :param authinfo:
@@ -113,3 +113,5 @@ def order_domain(api_token, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, 
     })
 
     return r.json()
+
+
