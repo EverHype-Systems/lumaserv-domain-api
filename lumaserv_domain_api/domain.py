@@ -143,3 +143,38 @@ def undelete_domain(api_token, domainName):
     })
 
     return r.json()
+
+
+def update_domain(api_token, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, ns3=None, ns4=None, ns5=None, user=None):
+    """
+    Updates A DOMAINS
+    :param user:
+    :param ns5:
+    :param ns4:
+    :param ns3:
+    :param ns2:
+    :param ns1:
+    :param zoneC:
+    :param techC:
+    :param adminC:
+    :param ownerC:
+    :param domainName:
+    :param api_token: DECLARES THE API TOKEN
+    :return: RETURNS LIST
+    """
+
+    r = requests.post(base.format(endpoint="domain/domains/edit", API_TOKEN=api_token), params={
+        "domainName": domainName,
+        "ownerC": ownerC,
+        "adminC": adminC,
+        "techC": techC,
+        "zoneC": zoneC,
+        "ns1": ns1,
+        "ns2": ns2,
+        "ns3": ns3,
+        "ns4": ns4,
+        "ns5": ns5,
+        "user": user,
+    })
+
+    return r.json()
