@@ -178,3 +178,19 @@ def update_domain(api_token, domainName, ownerC, adminC, techC, zoneC, ns1, ns2,
     })
 
     return r.json()
+
+
+def restore_domain(api_token, domainName):
+    """
+    RESTORES A DOMAINS
+    :param domainName:
+    :param api_token: DECLARES THE API TOKEN
+    :return: RETURNS LIST
+    """
+
+    r = requests.post(base.format(endpoint="domain/domains/restore", API_TOKEN=api_token), params={
+        "domainName": domainName,
+    })
+
+    return r.json()
+
