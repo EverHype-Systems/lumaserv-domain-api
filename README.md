@@ -22,12 +22,12 @@ This wrapper is used for communication with the Lumaserv System Domain API. The 
 	 - [x] Create contact/handle
 	 - [x] Delete contact/handle
 	 - [x] Update contact/handle
- - [ ] Nameserver
-	 - [ ] Get nameservers
-	 - [ ] Get one nameserver
-	 - [ ] Create nameserver
-	 - [ ] Delete nameserver
-	 - [ ] Update nameserver
+ - [x] Nameserver
+	 - [x] Get nameservers
+	 - [x] Get one nameserver
+	 - [x] Create nameserver
+	 - [x] Delete nameserver
+	 - [x] Update nameserver
 
 ## Usage
 Coming soon
