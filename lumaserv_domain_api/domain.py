@@ -115,3 +115,16 @@ def order_domain(api_token, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, 
     return r.json()
 
 
+def delete_domain(api_token, domainName, date=None):
+    """
+    :param api_token:
+    :param domainName:
+    :param date:
+    :return:
+    """
+    r = requests.delete(base.format(endpoint="domain/domains/delete", API_TOKEN=api_token), params={
+        "domainName": domainName,
+        "date": date
+    })
+
+    return r.json()
