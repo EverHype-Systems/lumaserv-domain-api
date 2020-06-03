@@ -3,10 +3,10 @@ This wrapper is used for communication with the Lumaserv System Domain API. The 
 ## Implemented Features
 
  - [ ] Domains
-	 - [ ] Get domains
-	 - [ ] Get one domain
-	 - [ ] Get authcode
-	 - [ ] Check availability of domains
+	 - [x] Get domains
+	 - [x] Get one domain
+	 - [x] Get authcode
+	 - [x] Check availability of domains
 	 - [ ] Order domain [**WARNING: RUNS AN ORDER => PAYMENT**]
 	 - [ ] Delete domain
 	 - [ ] Undelete domain
