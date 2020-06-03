@@ -103,8 +103,8 @@ def delete_handle(api_token, handle):
     return r.json()
 
 
-def edit_handle(api_token, handle, organisation=None, street, number, postcode, city, region, country, email,
-                countryofbirth=None, user=None):
+def edit_handle(api_token, handle, street, number, postcode, city, region, country, email,
+                countryofbirth=None, user=None, organisation=None):
     """
     EDIT A CREATED CONTACT/HANDLE
     :param api_token:
