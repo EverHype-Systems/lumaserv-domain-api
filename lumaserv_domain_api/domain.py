@@ -205,3 +205,16 @@ def get_tlds(api_token):
     r = requests.get(base.format(endpoint="domain/domains/tlds", API_TOKEN=api_token))
 
     return r.json()
+
+
+def get_domain_prices(api_token):
+    """
+    FETCHES THE CURRENT PRICING
+    :param api_token: DECLARES THE API TOKEN
+    :return: RETURNS LIST
+    """
+
+    r = requests.get(base.format(endpoint="accounting/pricing/domains", API_TOKEN=api_token))
+
+    return r.json()
+
