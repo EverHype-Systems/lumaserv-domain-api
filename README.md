@@ -15,13 +15,13 @@ This wrapper is used for communication with the Lumaserv System Domain API. The 
 	 - [x] Get all available domain tlds
 	 - [x] Get domain price list
 	 - [x] Get domain price offers
- - [ ] Contacts/Handle
-	 - [ ] Get contacts/handles
-	 - [ ] Get one contact/handle
-	 - [ ] Get countries
-	 - [ ] Create contact/handle
-	 - [ ] Delete contact/handle
-	 - [ ] Update contact/handle
+ - [x] Contacts/Handle
+	 - [x] Get contacts/handles
+	 - [x] Get one contact/handle
+	 - [x] Get countries
+	 - [x] Create contact/handle
+	 - [x] Delete contact/handle
+	 - [x] Update contact/handle
  - [ ] Nameserver
 	 - [ ] Get nameservers
 	 - [ ] Get one nameserver
