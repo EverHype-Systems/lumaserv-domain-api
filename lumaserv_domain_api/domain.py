@@ -66,8 +66,50 @@ def check_availabilty(api_token, domain):
     :return: RETURNS LIST
     """
 
-    r = requests.post(base.format(endpoint="/domain/domains/check", API_TOKEN=api_token), params={
+    r = requests.post(base.format(endpoint="domain/domains/check", API_TOKEN=api_token), params={
         "domainName": domain
+    })
+
+    return r.json()
+
+
+def order_domain(api_token, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, ns3=None, ns4=None, ns5=None, user=None,
+                 years=1, create_zone=True, authinfo=None):
+    """
+    ORDERS A DOMAINS
+    :param authinfo:
+    :param create_zone:
+    :param years:
+    :param user:
+    :param ns5:
+    :param ns4:
+    :param ns3:
+    :param ns2:
+    :param ns1:
+    :param zoneC:
+    :param techC:
+    :param adminC:
+    :param ownerC:
+    :param domainName:
+    :param api_token: DECLARES THE API TOKEN
+    :return: RETURNS LIST
+    """
+
+    r = requests.post(base.format(endpoint="domain/domains/create", API_TOKEN=api_token), params={
+        "domainName": domainName,
+        "ownerC": ownerC,
+        "adminC": adminC,
+        "techC": techC,
+        "zoneC": zoneC,
+        "ns1": ns1,
+        "ns2": ns2,
+        "ns3": ns3,
+        "ns4": ns4,
+        "ns5": ns5,
+        "user": user,
+        "years": years,
+        "create_zone": create_zone,
+        "authinfo": authinfo
     })
 
     return r.json()
