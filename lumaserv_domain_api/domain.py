@@ -218,3 +218,14 @@ def get_domain_prices(api_token):
 
     return r.json()
 
+
+def get_domain_discounts(api_token):
+    """
+    FETCHES THE CURRENT DOMAIN DISCOUNTS
+    :param api_token: DECLARES THE API TOKEN
+    :return: RETURNS LIST
+    """
+
+    r = requests.get(base.format(endpoint="accounting/pricing/domains/discounts", API_TOKEN=api_token))
+
+    return r.json()
