@@ -29,3 +29,19 @@ def get_nameserver(api_token, nameserver):
     })
 
     return r.json()
+
+
+def create_nameserver(api_token, nameserver):
+    """
+    CREATES A NEW NAMESERVER
+    :param api_token:
+    :param nameserver:
+    :return:
+    """
+
+    r = requests.post(base.format(endpoint="domain/nameservers/create", API_TOKEN=api_token), params={
+        "nameserver": nameserver
+    })
+
+    return r.json()
+
