@@ -45,3 +45,18 @@ def create_nameserver(api_token, nameserver):
 
     return r.json()
 
+
+def delete_nameserver(api_token, nameserver):
+    """
+    DELETES A CREATED NAMESERVER
+    :param api_token:
+    :param nameserver:
+    :return:
+    """
+
+    r = requests.delete(base.format(endpoint="domain/nameservers/delete", API_TOKEN=api_token), params={
+        "nameserver": nameserver
+    })
+
+    return r.json()
+
