@@ -7,12 +7,14 @@ This wrapper is used for communication with the Lumaserv System Domain API. The 
 	 - [x] Get one domain
 	 - [x] Get authcode
 	 - [x] Check availability of domains
-	 - [ ] Order domain [**WARNING: RUNS AN ORDER => PAYMENT**]
-	 - [ ] Delete domain
-	 - [ ] Undelete domain
-	 - [ ] Update domain
-	 - [ ] Restore Domain
-	 - [ ] Get all available domain tlds
+	 - [x] Order domain [**WARNING: RUNS AN ORDER => PAYMENT**]
+	 - [x] Delete domain
+	 - [x] Undelete domain
+	 - [x] Update domain
+	 - [x] Restore Domain
+	 - [x] Get all available domain tlds
+	 - [ ] Get domain price list
+	 - [ ] Get domain price offers
  - [ ] Contacts/Handle
 	 - [ ] Get contacts/handles
 	 - [ ] Get one contact/handle
