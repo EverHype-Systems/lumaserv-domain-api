@@ -1,231 +1,225 @@
 import requests
 
-# DECLARES THE BASE URL OF THE API
-base = "https://connect.nicapi.eu/api/v1/{endpoint}?authToken={API_TOKEN}"
+# DECLARES THE self.base URL OF THE API
 
 
-def get_domains(api_token):
-    """
-    RETURNS ALL ASSIGNED DOMAINS.
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS DECODED LIST
-    """
+class Domain:
 
-    r = requests.get(base.format(endpoint="domain/domains", API_TOKEN=api_token))
+    def __init__(self, api_token):
+        self.api_token = api_token
+        self.base = "https://connect.nicapi.eu/api/v1/{endpoint}?authToken={API_TOKEN}"
 
-    return r.json()
+    def get_domains(self):
+        """
+        RETURNS ALL ASSIGNED DOMAINS.
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS DECODED LIST
+        """
 
+        r = requests.get(self.base.format(endpoint="domain/domains", API_TOKEN=self.api_token))
 
-def get_domain(api_token, domain):
-    """
-    RETURNS INFORMATION ABOUT ONE DOMAIN
-    :param domain: DECLARES THE DOMAIN TO BE USED
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS LIST
-    """
+        return r.json()
 
-    r = requests.get(base.format(endpoint="domain/domains/show", API_TOKEN=api_token), params={
-        "domainName": domain
-    })
+    def get_domain(self, domain):
+        """
+        RETURNS INFORMATION ABOUT ONE DOMAIN
+        :param domain: DECLARES THE DOMAIN TO BE USED
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS LIST
+        """
 
-    return r.json()
+        r = requests.get(self.base.format(endpoint="domain/domains/show", API_TOKEN=self.api_token), params={
+            "domainName": domain
+        })
 
+        return r.json()
 
-def get_auth_info(api_token, domain):
-    """
-    RETURNS INFORMATION ABOUT THE AUTH CODE
-    :param domain: DECLARES THE DOMAIN TO BE USED
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS LIST
-    """
+    def get_auth_info(self, domain):
+        """
+        RETURNS INFORMATION ABOUT THE AUTH CODE
+        :param domain: DECLARES THE DOMAIN TO BE USED
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS LIST
+        """
 
-    r = requests.post(base.format(endpoint="domain/domains/authcode", API_TOKEN=api_token), params={
-        "domainName": domain
-    })
+        r = requests.post(self.base.format(endpoint="domain/domains/authcode", API_TOKEN=self.api_token), params={
+            "domainName": domain
+        })
 
-    return r.json()
+        return r.json()
 
+    def get_auth_code(self, domain):
+        """
+           RETURNS THE AUTH CODE FOR ONE DOMAIN
+           :param domain: DECLARES THE DOMAIN TO BE USED
+           :param api_token: DECLARES THE API TOKEN
+           :return: RETURNS LIST
+           """
 
-def get_auth_code(api_token, domain):
-    """
-       RETURNS THE AUTH CODE FOR ONE DOMAIN
-       :param domain: DECLARES THE DOMAIN TO BE USED
-       :param api_token: DECLARES THE API TOKEN
-       :return: RETURNS LIST
-       """
+        return self.get_auth_info(self.api_token, domain)["data"]["domain"]["authinfo"]
 
-    return get_auth_info(api_token, domain)["data"]["domain"]["authinfo"]
+    def check_availability(self, domain):
+        """
+        RETURNS INFORMATION ABOUT THE AUTH CODE
+        :param domain: DECLARES THE DOMAIN TO BE USED
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS LIST
+        """
 
+        r = requests.post(self.base.format(endpoint="domain/domains/check", API_TOKEN=self.api_token), params={
+            "domainName": domain
+        })
 
-def check_availability(api_token, domain):
-    """
-    RETURNS INFORMATION ABOUT THE AUTH CODE
-    :param domain: DECLARES THE DOMAIN TO BE USED
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS LIST
-    """
+        return r.json()
 
-    r = requests.post(base.format(endpoint="domain/domains/check", API_TOKEN=api_token), params={
-        "domainName": domain
-    })
+    def order_domain(self, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, ns3=None, ns4=None, ns5=None,
+                     user=None,
+                     years=1, create_zone=None, authinfo=None):
+        """
+        ORDERS A DOMAINS
+        :param authinfo:
+        :param create_zone:
+        :param years:
+        :param user:
+        :param ns5:
+        :param ns4:
+        :param ns3:
+        :param ns2:
+        :param ns1:
+        :param zoneC:
+        :param techC:
+        :param adminC:
+        :param ownerC:
+        :param domainName:
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS LIST
+        """
 
-    return r.json()
+        r = requests.post(self.base.format(endpoint="domain/domains/create", API_TOKEN=self.api_token), params={
+            "domainName": domainName,
+            "ownerC": ownerC,
+            "adminC": adminC,
+            "techC": techC,
+            "zoneC": zoneC,
+            "ns1": ns1,
+            "ns2": ns2,
+            "ns3": ns3,
+            "ns4": ns4,
+            "ns5": ns5,
+            "user": user,
+            "years": years,
+            "create_zone": create_zone,
+            "authinfo": authinfo
+        })
 
+        return r.json()
 
-def order_domain(api_token, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, ns3=None, ns4=None, ns5=None, user=None,
-                 years=1, create_zone=None, authinfo=None):
-    """
-    ORDERS A DOMAINS
-    :param authinfo:
-    :param create_zone:
-    :param years:
-    :param user:
-    :param ns5:
-    :param ns4:
-    :param ns3:
-    :param ns2:
-    :param ns1:
-    :param zoneC:
-    :param techC:
-    :param adminC:
-    :param ownerC:
-    :param domainName:
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS LIST
-    """
+    def delete_domain(self, domainName, date=None):
+        """
+        Deletes a domain.
+        :param api_token:
+        :param domainName:
+        :param date: OPTIONAL
+        :return:
+        """
+        r = requests.delete(self.base.format(endpoint="domain/domains/delete", API_TOKEN=self.api_token), params={
+            "domainName": domainName,
+            "date": date
+        })
 
-    r = requests.post(base.format(endpoint="domain/domains/create", API_TOKEN=api_token), params={
-        "domainName": domainName,
-        "ownerC": ownerC,
-        "adminC": adminC,
-        "techC": techC,
-        "zoneC": zoneC,
-        "ns1": ns1,
-        "ns2": ns2,
-        "ns3": ns3,
-        "ns4": ns4,
-        "ns5": ns5,
-        "user": user,
-        "years": years,
-        "create_zone": create_zone,
-        "authinfo": authinfo
-    })
+        return r.json()
 
-    return r.json()
+    def undelete_domain(self, domainName):
+        """
+        Removes the deletion task if date for deletion was set.
+        :param api_token:
+        :param domainName:
+        :return:
+        """
+        r = requests.post(self.base.format(endpoint="domain/domains/undelete", API_TOKEN=self.api_token), params={
+            "domainName": domainName,
+        })
 
+        return r.json()
 
-def delete_domain(api_token, domainName, date=None):
-    """
-    Deletes a domain.
-    :param api_token:
-    :param domainName:
-    :param date: OPTIONAL
-    :return:
-    """
-    r = requests.delete(base.format(endpoint="domain/domains/delete", API_TOKEN=api_token), params={
-        "domainName": domainName,
-        "date": date
-    })
+    def update_domain(self, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, ns3=None, ns4=None, ns5=None,
+                      user=None):
+        """
+        Updates A DOMAINS
+        :param user:
+        :param ns5:
+        :param ns4:
+        :param ns3:
+        :param ns2:
+        :param ns1:
+        :param zoneC:
+        :param techC:
+        :param adminC:
+        :param ownerC:
+        :param domainName:
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS LIST
+        """
 
-    return r.json()
+        r = requests.post(self.base.format(endpoint="domain/domains/edit", API_TOKEN=self.api_token), params={
+            "domainName": domainName,
+            "ownerC": ownerC,
+            "adminC": adminC,
+            "techC": techC,
+            "zoneC": zoneC,
+            "ns1": ns1,
+            "ns2": ns2,
+            "ns3": ns3,
+            "ns4": ns4,
+            "ns5": ns5,
+            "user": user,
+        })
 
+        return r.json()
 
-def undelete_domain(api_token, domainName):
-    """
-    Removes the deletion task if date for deletion was set.
-    :param api_token:
-    :param domainName:
-    :return:
-    """
-    r = requests.post(base.format(endpoint="domain/domains/undelete", API_TOKEN=api_token), params={
-        "domainName": domainName,
-    })
+    def restore_domain(self, domainName):
+        """
+        RESTORES A DOMAINS
+        :param domainName:
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS LIST
+        """
 
-    return r.json()
+        r = requests.post(self.base.format(endpoint="domain/domains/restore", API_TOKEN=self.api_token), params={
+            "domainName": domainName,
+        })
 
+        return r.json()
 
-def update_domain(api_token, domainName, ownerC, adminC, techC, zoneC, ns1, ns2, ns3=None, ns4=None, ns5=None, user=None):
-    """
-    Updates A DOMAINS
-    :param user:
-    :param ns5:
-    :param ns4:
-    :param ns3:
-    :param ns2:
-    :param ns1:
-    :param zoneC:
-    :param techC:
-    :param adminC:
-    :param ownerC:
-    :param domainName:
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS LIST
-    """
+    def get_tlds(self):
+        """
+        FETCHES ALL AVAILABLE TLDs
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS LIST
+        """
 
-    r = requests.post(base.format(endpoint="domain/domains/edit", API_TOKEN=api_token), params={
-        "domainName": domainName,
-        "ownerC": ownerC,
-        "adminC": adminC,
-        "techC": techC,
-        "zoneC": zoneC,
-        "ns1": ns1,
-        "ns2": ns2,
-        "ns3": ns3,
-        "ns4": ns4,
-        "ns5": ns5,
-        "user": user,
-    })
+        r = requests.get(self.base.format(endpoint="domain/domains/tlds", API_TOKEN=self.api_token))
 
-    return r.json()
+        return r.json()
 
+    def get_domain_prices(self):
+        """
+        FETCHES THE CURRENT PRICING
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS LIST
+        """
 
-def restore_domain(api_token, domainName):
-    """
-    RESTORES A DOMAINS
-    :param domainName:
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS LIST
-    """
+        r = requests.get(self.base.format(endpoint="accounting/pricing/domains", API_TOKEN=self.api_token))
 
-    r = requests.post(base.format(endpoint="domain/domains/restore", API_TOKEN=api_token), params={
-        "domainName": domainName,
-    })
+        return r.json()
 
-    return r.json()
+    def get_domain_discounts(self):
+        """
+        FETCHES THE CURRENT DOMAIN DISCOUNTS
+        :param api_token: DECLARES THE API TOKEN
+        :return: RETURNS LIST
+        """
 
+        r = requests.get(self.base.format(endpoint="accounting/pricing/domains/discounts", API_TOKEN=self.api_token))
 
-def get_tlds(api_token):
-    """
-    FETCHES ALL AVAILABLE TLDs
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS LIST
-    """
-
-    r = requests.get(base.format(endpoint="domain/domains/tlds", API_TOKEN=api_token))
-
-    return r.json()
-
-
-def get_domain_prices(api_token):
-    """
-    FETCHES THE CURRENT PRICING
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS LIST
-    """
-
-    r = requests.get(base.format(endpoint="accounting/pricing/domains", API_TOKEN=api_token))
-
-    return r.json()
-
-
-def get_domain_discounts(api_token):
-    """
-    FETCHES THE CURRENT DOMAIN DISCOUNTS
-    :param api_token: DECLARES THE API TOKEN
-    :return: RETURNS LIST
-    """
-
-    r = requests.get(base.format(endpoint="accounting/pricing/domains/discounts", API_TOKEN=api_token))
-
-    return r.json()
-
+        return r.json()
