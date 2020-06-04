@@ -3,8 +3,8 @@ import requests
 
 class Nameserver:
 
-    def __init__(self):
-        self.self.api_token = self.api_token
+    def __init__(self, api_token):
+        self.api_token = api_token
         self.base = "https://connect.nicapi.eu/api/v1/{endpoint}?authToken={API_TOKEN}"
 
     def get_nameservers(self):
