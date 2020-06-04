@@ -33,10 +33,13 @@ This wrapper is used for communication with the Lumaserv System Domain API. The 
 ## Usage of Domains
 Please note that you have to pass your API_TOKEN at every request.
 ```python
-import lumaserv_domain_api.domain as domain
+from lumaserv_domain_api.domain import Domain
 
 # DEFINE YOUR API KEY
 apikey = "PutYourKeyHere"
+
+#Constructor of Lumaserv Domains
+domain = Domain(apikey)
 
 # FETCH ALL DOMAINS ASSIGNED TO YOUR ACCOUNT
 print(domain.get_domains(apikey))
