@@ -1,78 +1,70 @@
 import requests
 
-# DECLARES THE BASE URL OF THE API
-base = "https://connect.nicapi.eu/api/v1/{endpoint}?authToken={API_TOKEN}"
 
+class Nameserver:
 
-def get_nameservers(api_token):
-    """
-    FETCHES ALL ASSIGNED NAMESERVERS
-    :param api_token:
-    :return:
-    """
+    def __init__(self):
+        self.self.api_token = self.api_token
+        self.base = "https://connect.nicapi.eu/api/v1/{endpoint}?authToken={API_TOKEN}"
 
-    r = requests.get(base.format(endpoint="domain/nameservers", API_TOKEN=api_token))
+    def get_nameservers(self):
+        """
+        FETCHES ALL ASSIGNED NAMESERVERS
+        :return:
+        """
 
-    return r.json()
+        r = requests.get(self.base.format(endpoint="domain/nameservers", API_TOKEN=self.api_token))
 
+        return r.json()
 
-def get_nameserver(api_token, nameserver):
-    """
-    GET INFORMATION FOR ONE NAMESERVER
-    :param nameserver:
-    :param api_token:
-    :return:
-    """
+    def get_nameserver(self, nameserver):
+        """
+        GET INFORMATION FOR ONE NAMESERVER
+        :param nameserver:
+        :return:
+        """
 
-    r = requests.get(base.format(endpoint="domain/nameservers/show", API_TOKEN=api_token), params={
-        "nameserver": nameserver
-    })
+        r = requests.get(self.base.format(endpoint="domain/nameservers/show", API_TOKEN=self.api_token), params={
+            "nameserver": nameserver
+        })
 
-    return r.json()
+        return r.json()
 
+    def create_nameserver(self, nameserver):
+        """
+        CREATES A NEW NAMESERVER
+        :param nameserver:
+        :return:
+        """
 
-def create_nameserver(api_token, nameserver):
-    """
-    CREATES A NEW NAMESERVER
-    :param api_token:
-    :param nameserver:
-    :return:
-    """
+        r = requests.post(self.base.format(endpoint="domain/nameservers/create", API_TOKEN=self.api_token), params={
+            "nameserver": nameserver
+        })
 
-    r = requests.post(base.format(endpoint="domain/nameservers/create", API_TOKEN=api_token), params={
-        "nameserver": nameserver
-    })
+        return r.json()
 
-    return r.json()
+    def delete_nameserver(self, nameserver):
+        """
+        DELETES A CREATED NAMESERVER
+        :param nameserver:
+        :return:
+        """
 
+        r = requests.delete(self.base.format(endpoint="domain/nameservers/delete", API_TOKEN=self.api_token), params={
+            "nameserver": nameserver
+        })
 
-def delete_nameserver(api_token, nameserver):
-    """
-    DELETES A CREATED NAMESERVER
-    :param api_token:
-    :param nameserver:
-    :return:
-    """
+        return r.json()
 
-    r = requests.delete(base.format(endpoint="domain/nameservers/delete", API_TOKEN=api_token), params={
-        "nameserver": nameserver
-    })
+    def update_namserver(self, nameserver):
+        """
+        UPDATED A  NAMESERVER
+        :param nameserver:
+        :return:
+        """
 
-    return r.json()
+        r = requests.post(self.base.format(endpoint="domain/nameservers/refresh", API_TOKEN=self.api_token), params={
+            "nameserver": nameserver
+        })
 
-
-def update_namserver(api_token, nameserver):
-    """
-    UPDATED A  NAMESERVER
-    :param api_token:
-    :param nameserver:
-    :return:
-    """
-
-    r = requests.post(base.format(endpoint="domain/nameservers/refresh", API_TOKEN=api_token), params={
-        "nameserver": nameserver
-    })
-
-    return r.json()
-
-
+        return r.json()
