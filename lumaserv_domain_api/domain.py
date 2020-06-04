@@ -12,7 +12,6 @@ class Domain:
     def get_domains(self):
         """
         RETURNS ALL ASSIGNED DOMAINS.
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS DECODED LIST
         """
 
@@ -24,7 +23,6 @@ class Domain:
         """
         RETURNS INFORMATION ABOUT ONE DOMAIN
         :param domain: DECLARES THE DOMAIN TO BE USED
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS LIST
         """
 
@@ -38,7 +36,6 @@ class Domain:
         """
         RETURNS INFORMATION ABOUT THE AUTH CODE
         :param domain: DECLARES THE DOMAIN TO BE USED
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS LIST
         """
 
@@ -52,7 +49,6 @@ class Domain:
         """
            RETURNS THE AUTH CODE FOR ONE DOMAIN
            :param domain: DECLARES THE DOMAIN TO BE USED
-           :param api_token: DECLARES THE API TOKEN
            :return: RETURNS LIST
            """
 
@@ -62,7 +58,6 @@ class Domain:
         """
         RETURNS INFORMATION ABOUT THE AUTH CODE
         :param domain: DECLARES THE DOMAIN TO BE USED
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS LIST
         """
 
@@ -91,7 +86,6 @@ class Domain:
         :param adminC:
         :param ownerC:
         :param domainName:
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS LIST
         """
 
@@ -117,7 +111,6 @@ class Domain:
     def delete_domain(self, domainName, date=None):
         """
         Deletes a domain.
-        :param api_token:
         :param domainName:
         :param date: OPTIONAL
         :return:
@@ -132,7 +125,6 @@ class Domain:
     def undelete_domain(self, domainName):
         """
         Removes the deletion task if date for deletion was set.
-        :param api_token:
         :param domainName:
         :return:
         """
@@ -157,7 +149,6 @@ class Domain:
         :param adminC:
         :param ownerC:
         :param domainName:
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS LIST
         """
 
@@ -181,7 +172,6 @@ class Domain:
         """
         RESTORES A DOMAINS
         :param domainName:
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS LIST
         """
 
@@ -194,7 +184,6 @@ class Domain:
     def get_tlds(self):
         """
         FETCHES ALL AVAILABLE TLDs
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS LIST
         """
 
@@ -205,7 +194,6 @@ class Domain:
     def get_domain_prices(self):
         """
         FETCHES THE CURRENT PRICING
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS LIST
         """
 
@@ -216,7 +204,6 @@ class Domain:
     def get_domain_discounts(self):
         """
         FETCHES THE CURRENT DOMAIN DISCOUNTS
-        :param api_token: DECLARES THE API TOKEN
         :return: RETURNS LIST
         """
 
