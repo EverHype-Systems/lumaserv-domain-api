@@ -31,7 +31,7 @@ class Contact:
         return r.json()
 
     def create_handle(self, handle_type, sex, firstname, lastname, organisation, street, number, postcode, city, region,
-                      country, email, countryofbirth=None, user=None, dateofbirth=None):
+                      country, email, phone, countryofbirth=None, user=None, dateofbirth=None):
         """
         CREATES A DOMAIN CONTACT
         :return:
@@ -47,6 +47,7 @@ class Contact:
         :param region:
         :param country:
         :param email:
+        :param phone:
         :param countryofbirth: OPTIONAL
         :param user: OPTIONAL
         :param dateofbirth: OPTIONAL
@@ -66,6 +67,7 @@ class Contact:
             "region": region,
             "country": country,
             "email": email,
+            "phone": phone,
             "countryofbirth": countryofbirth,
             "user": user,
             "dateofbirth": dateofbirth
