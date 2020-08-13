@@ -89,7 +89,7 @@ class Contact:
     
         return r.json()
 
-    def edit_handle(self, handle, street, number, postcode, city, region, country, email,
+    def edit_handle(self, handle, street, number, postcode, city, region, country, email, phone,
                     countryofbirth=None, user=None, organisation=None):
         """
         EDIT A CREATED CONTACT/HANDLE
@@ -102,6 +102,7 @@ class Contact:
         :param region:
         :param country:
         :param email:
+        :param phone:
         :param countryofbirth:
         :param user:
         :return:
@@ -117,6 +118,7 @@ class Contact:
             "region": region,
             "country": country,
             "email": email,
+            "phone": phone,
             "countryofbirth": countryofbirth,
             "user": user
         })
