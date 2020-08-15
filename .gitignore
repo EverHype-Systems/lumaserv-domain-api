@@ -1,0 +1,5 @@
+/.idea/
+/dist/
+/lumaserv_domain_api.egg-info/
+/tests.py
+/setup.py
