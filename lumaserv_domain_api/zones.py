@@ -36,7 +36,7 @@ class DomainZones:
         :return:
         """
 
-        r = requests.post(self.base.format(endpoint="/dns/zones/records/add", API_TOKEN=self.api_token), params={
+        r = requests.post(self.base.format(endpoint="dns/zones/records/add", API_TOKEN=self.api_token), params={
             "zone": zone,
             "records": records,
         })
